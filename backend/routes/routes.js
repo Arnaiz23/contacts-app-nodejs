@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 
 // ! Catch
 
-// ? Get contact of a user
+// ? Get contacts of a user
 router.get("/contacts/:id", async (req, res) => {
   const { id } = req.params
   const conn = await pool.getConnection()

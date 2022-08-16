@@ -32,7 +32,7 @@ export default function User({ params }) {
       <span className="logout" onClick={handleLogout}>
         <LogoutIcon />
       </span>
-      <h1>User {params.id}</h1>
+      <h1>User {params.id} contacts</h1>
       <div className="container-contacts">
         {!loading && contacts.length > 0 ? (
           contacts.map((data) => <Contact key={data.id} data={data} />)
