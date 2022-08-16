@@ -9,6 +9,8 @@ services:
       - "9000:9000"
     volumes:
       - ./backend:/home/app
+    restart:
+      - always
     links:
       - mariadb
   mariadb:

@@ -1,0 +1,23 @@
+.container-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.logout {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #aaa;
+    padding: 10px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}

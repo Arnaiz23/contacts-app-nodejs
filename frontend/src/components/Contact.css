@@ -1,0 +1,17 @@
+.container-contact {
+    width: 40%;
+    border: 1px solid #aaa;
+    border-radius: 9999px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-contact h4 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
