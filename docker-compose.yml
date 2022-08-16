@@ -1,0 +1,22 @@
+version: '3.0'
+services:
+  node:
+    container_name: node
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./backend:/home/app
+    links:
+      - mariadb
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+    ports:
+      - "3060:3060"
