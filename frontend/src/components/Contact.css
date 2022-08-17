@@ -8,10 +8,26 @@
     align-items: center;
     flex-direction: column;
     gap: 20px;
+    position: relative;
 }
 
 .container-contact h4 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.trash-contact {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    right: 100px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+.trash-contact:focus {
+    outline: none;
 }

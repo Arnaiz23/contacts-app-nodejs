@@ -16,7 +16,7 @@
     width: 100%;
 }
 
-.form-login input {
+.form-input {
     width: 50%;
     padding: 10px 30px;
     border-radius: 9999px;
@@ -25,11 +25,11 @@
     font-size: 20px;
 }
 
-.form-login input:focus {
+.form-input:focus {
     outline: none;
 }
 
-.form-login button {
+.form-input + button {
     width: 50%;
     border-radius: 9999px;
     padding: 10px;
@@ -39,4 +39,14 @@
     border: none;
     font-weight: bold;
     line-height: 2;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.form-input + button:disabled {
+    opacity: 0.3;
+}
+
+.form-input + button:active {
+    transform: scale(.9);
 }

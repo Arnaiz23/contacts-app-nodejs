@@ -13,13 +13,18 @@ router.get("/", async (req, res) => {
 // ? Get contacts of a user
 router.get("/contacts/:id", async (req, res) => {
   const { id } = req.params
-  const conn = await pool.getConnection()
 
-  const query = "SELECT * FROM data WHERE user_id LIKE (?)"
+  try {
+    const conn = await pool.getConnection()
 
-  const rows = await conn.query(query, [id])
+    const query = "SELECT * FROM data WHERE user_id LIKE (?)"
 
-  return res.status(200).send(rows)
+    const rows = await conn.query(query, [id])
+
+    return res.status(200).send(rows)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 // ? LOGIN
@@ -67,17 +72,21 @@ router.post("/contact/:id", async (req, res) => {
 router.delete("/contact/:id", async (req, res) => {
   const { id } = req.params
 
-  const conn = await pool.getConnection()
+  try {
+    const conn = await pool.getConnection()
 
-  const query = "DELETE FROM data WHERE id LIKE (?)"
+    const query = "DELETE FROM data WHERE id LIKE (?)"
 
-  const row = await conn.query(query, [id])
+    const row = await conn.query(query, [id])
 
-  if (row.affectedRows !== 1) {
-    return res.status(500).json({ code: "error" })
+    if (row.affectedRows !== 1) {
+      return res.status(500).json({ code: "error" })
+    }
+
+    return res.status(200).json({ code: "success" })
+  } catch (error) {
+    console.log("Error delete contact")
   }
-
-  return res.status(200).json({ code: "success" })
 })
 
 // ? Delete user
@@ -112,6 +121,26 @@ router.post("/user", async (req, res) => {
   }
 
   return res.status(200).json({ code: "success" })
+})
+
+// ? User information
+router.get("/user/:id", async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const conn = await pool.getConnection()
+
+    const query = "SELECT user FROM users WHERE id LIKE (?)"
+
+    const row = await conn.query(query, [id])
+
+    res.status(200).json({
+      code: "success",
+      name: row[0].user,
+    })
+  } catch (error) {
+    console.log("Error from the user information")
+  }
 })
 
 module.exports = router

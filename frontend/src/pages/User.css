@@ -6,9 +6,11 @@
     justify-content: center;
     align-items: center;
     padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .logout {
+    z-index: 10;
     position: absolute;
     top: 20px;
     right: 20px;
@@ -20,4 +22,40 @@
     color: #000;
     font-weight: bold;
     cursor: pointer;
+}
+
+.add-contact {
+    width: 40%;
+    border-radius: 9999px;
+    background-color: rgb(153, 73, 177);
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ddd;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.add-contact:focus {
+    outline: none;
+}
+
+.add-contact:active {
+    transform: scale(.9);
+}
+
+.header-contacts {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    padding-top: 10px;
+    display: grid;
+    place-items: center;
+    background-color: #282c34;
+}
+
+.header-contacts h1 {
+    padding-bottom: 20px;
 }

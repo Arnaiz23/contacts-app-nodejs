@@ -5,6 +5,7 @@ import { login } from "../services/services"
 import { useLocation } from "wouter"
 
 import useLocal from "../hook/useLocal"
+import { Alert } from "@mui/material"
 
 export default function Login() {
   useLocal()
@@ -12,6 +13,8 @@ export default function Login() {
   const [user, setUser] = useState()
   const [pass, setPass] = useState()
   const setLocation = useLocation()[1]
+  const [disabled, setDisabled] = useState(null)
+  const [error, setError] = useState(null)
 
   const handleChangeUser = (e) => {
     setUser(e.target.value)
@@ -24,15 +27,20 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    setDisabled(true)
+    setError(false)
+
     const data = {
       user,
       pass,
     }
 
     login(data).then((res) => {
-      if (res.code === "error") return alert("error")
+      if (res.code === "error") {
+        setDisabled(false)
+        return setError(true)
+      }
 
-      alert("Correcto")
       localStorage.setItem("id", res.object)
       setLocation(`/${res.object}`)
     })
@@ -41,8 +49,10 @@ export default function Login() {
   return (
     <div className="login-container">
       <h1>Login</h1>
+      {error && <Alert severity="error">User not valid</Alert>}
       <form className="form-login" onSubmit={handleSubmit}>
         <input
+          className="form-input"
           type="text"
           name=""
           id=""
@@ -50,13 +60,14 @@ export default function Login() {
           onChange={handleChangeUser}
         />
         <input
+          className="form-input"
           type="password"
           name=""
           id=""
           placeholder="Password"
           onChange={handleChangePass}
         />
-        <button>Login</button>
+        <button disabled={disabled}>Login</button>
       </form>
     </div>
   )
