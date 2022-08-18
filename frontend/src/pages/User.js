@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 import Contact from "../components/Contact"
-import { getContacts, getUserName } from "../services/services"
+import { deleteUser, getContacts, getUserName } from "../services/services"
 import "./User.css"
 
 import LogoutIcon from "@mui/icons-material/Logout"
+import DeleteIcon from "@mui/icons-material/Delete"
 import useLocal from "../hook/useLocal"
 import { Link, useLocation } from "wouter"
+import { Alert } from "@mui/material"
 
 export default function User({ params }) {
   useLocal()
@@ -15,6 +17,7 @@ export default function User({ params }) {
   const [name, setName] = useState("")
   const setLocation = useLocation()[1]
   const [recharge, setRecharge] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -33,13 +36,34 @@ export default function User({ params }) {
     setLocation("/")
   }
 
+  const handleDelete = () => {
+    deleteUser(params.id).then((res) => {
+      setError(false)
+
+      if (res.code === "error") {
+        return setError(true)
+      }
+
+      localStorage.removeItem("id")
+      setLocation("/")
+    })
+  }
+
   return (
     <>
+      <span className="delete-user" onClick={handleDelete}>
+        <DeleteIcon />
+      </span>
       <span className="logout" onClick={handleLogout}>
         <LogoutIcon />
       </span>
       <header className="header-contacts">
         <h1>{name} contacts</h1>
+        {error && (
+          <Alert severity="alert">
+            This user could not be deleted. Try again later.
+          </Alert>
+        )}
         <Link to={`/new-contact/${params.id}`}>
           <button className="add-contact">Add contact</button>
         </Link>

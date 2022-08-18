@@ -55,3 +55,16 @@
     background-color: rgb(153, 73, 177);
     margin-top: -20px;
 }
+
+.go-back {
+    padding: 10px;
+    display: grid;
+    place-items: center;
+    background-color: #ddd;
+    color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    cursor: pointer;
+}

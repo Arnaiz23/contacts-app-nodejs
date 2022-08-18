@@ -53,3 +53,11 @@ export function register(body) {
     .then((res) => res.json())
     .then((res) => res)
 }
+
+export function deleteUser(id) {
+  return fetch(`${process.env.REACT_APP_NODE_URL}/user/${id}`, {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .then((res) => res)
+}

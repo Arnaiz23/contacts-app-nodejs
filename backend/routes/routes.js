@@ -103,7 +103,11 @@ router.delete("/user/:id", async (req, res) => {
 
   const row = await conn.query(queryUser, [id])
 
-  console.log(row)
+  if (row.affectedRows !== 1) {
+    return res.status(500).json({ code: "error" })
+  }
+
+  return res.status(200).json({ code: "success" })
 })
 
 // ? Add user

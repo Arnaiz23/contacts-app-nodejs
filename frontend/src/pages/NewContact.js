@@ -3,7 +3,8 @@ import { Alert } from "@mui/material"
 
 import "./Login.css"
 import { newContact } from "../services/services"
-import { useLocation } from "wouter"
+import { Link, useLocation } from "wouter"
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 
 export default function NewContact({ params }) {
   const [contact, setContact] = useState({
@@ -38,7 +39,7 @@ export default function NewContact({ params }) {
       }
 
       setLoading(false)
-      setLocation(`/${params.id}`)
+      setLocation(`/user/${params.id}`)
     })
   }
 
@@ -82,6 +83,11 @@ export default function NewContact({ params }) {
           Add
         </button>
       </form>
+      <Link to={`/user/${params.id}`}>
+        <span className="go-back">
+          <ArrowBackIcon />
+        </span>
+      </Link>
     </div>
   )
 }
