@@ -112,6 +112,14 @@ router.post("/user", async (req, res) => {
 
   const conn = await pool.getConnection()
 
+  const queryExists = "SELECT * FROM users WHERE user LIKE (?)"
+
+  const rowExists = await conn.query(queryExists, [user])
+
+  if (rowExists.length !== 0) {
+    return res.status(404).json({ code: "error" })
+  }
+
   const query = "INSERT INTO users (user, pass) VALUES ((?), (?))"
 
   const row = await conn.query(query, [user, pass])

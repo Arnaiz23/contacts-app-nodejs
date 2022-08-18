@@ -41,3 +41,15 @@ export function deleteContact(id) {
     .then((res) => res.json())
     .then((res) => res)
 }
+
+export function register(body) {
+  return fetch(`${process.env.REACT_APP_NODE_URL}/user`, {
+    method: "POST",
+    headers: new Headers({
+      "Content-type": "application/json",
+    }),
+    body: JSON.stringify(body),
+  })
+    .then((res) => res.json())
+    .then((res) => res)
+}

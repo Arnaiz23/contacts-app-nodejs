@@ -29,7 +29,7 @@
     outline: none;
 }
 
-.form-input + button {
+.form-button {
     width: 50%;
     border-radius: 9999px;
     padding: 10px;
@@ -43,10 +43,15 @@
     transition: transform .3s;
 }
 
-.form-input + button:disabled {
+.form-button:disabled {
     opacity: 0.3;
 }
 
-.form-input + button:active {
+.form-button:active {
     transform: scale(.9);
+}
+
+.purple {
+    background-color: rgb(153, 73, 177);
+    margin-top: -20px;
 }

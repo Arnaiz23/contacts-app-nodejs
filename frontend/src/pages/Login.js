@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import "./Login.css"
 
 import { login } from "../services/services"
-import { useLocation } from "wouter"
+import { Link, useLocation } from "wouter"
 
 import useLocal from "../hook/useLocal"
 import { Alert } from "@mui/material"
@@ -42,7 +42,7 @@ export default function Login() {
       }
 
       localStorage.setItem("id", res.object)
-      setLocation(`/${res.object}`)
+      setLocation(`/user/${res.object}`)
     })
   }
 
@@ -67,8 +67,13 @@ export default function Login() {
           placeholder="Password"
           onChange={handleChangePass}
         />
-        <button disabled={disabled}>Login</button>
+        <button className="form-button" disabled={disabled}>
+          Login
+        </button>
       </form>
+      <Link to={`/register`}>
+        <button className="form-button purple">Register</button>
+      </Link>
     </div>
   )
 }

@@ -78,7 +78,9 @@ export default function NewContact({ params }) {
           placeholder="Tel"
           onChange={handleChange}
         />
-        <button disabled={loading}>Add</button>
+        <button className="form-button" disabled={loading}>
+          Add
+        </button>
       </form>
     </div>
   )
