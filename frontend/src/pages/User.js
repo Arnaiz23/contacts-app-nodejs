@@ -60,7 +60,7 @@ export default function User({ params }) {
       <header className="header-contacts">
         <h1>{name} contacts</h1>
         {error && (
-          <Alert severity="alert">
+          <Alert severity="error">
             This user could not be deleted. Try again later.
           </Alert>
         )}
