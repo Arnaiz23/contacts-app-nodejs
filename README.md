@@ -1,6 +1,6 @@
 # Contacts App
 
-This app consists a user saves his contacts.
+This app consists of a user saves his contacts.
 
 ## Technologies
 
