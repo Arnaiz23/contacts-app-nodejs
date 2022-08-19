@@ -21,7 +21,7 @@ router.get("/contacts/:id", async (req, res) => {
 
     const rows = await conn.query(query, [id])
 
-    conn.end()
+    await conn.end()
 
     return res.status(200).send(rows)
   } catch (error) {
@@ -40,7 +40,7 @@ router.post("/login", async (req, res) => {
 
     const row = await conn.query(query, [user, pass])
 
-    conn.end()
+    await conn.end()
 
     if (!row || row.length === 0) {
       return res.status(200).json({
@@ -70,7 +70,7 @@ router.post("/contact/:id", async (req, res) => {
 
     const row = await conn.query(query, [name, lastName, tel, id])
 
-    conn.end()
+    await conn.end()
 
     if (row.affectedRows !== 1) {
       return res.status(500).json({ code: "error" })
@@ -93,7 +93,7 @@ router.delete("/contact/:id", async (req, res) => {
 
     const row = await conn.query(query, [id])
 
-    conn.end()
+    await conn.end()
 
     if (row.affectedRows !== 1) {
       return res.status(500).json({ code: "error" })
@@ -120,7 +120,7 @@ router.delete("/user/:id", async (req, res) => {
 
     const row = await conn.query(queryUser, [id])
 
-    conn.end()
+    await conn.end()
 
     if (row.affectedRows !== 1) {
       return res.status(500).json({ code: "error" })
@@ -151,7 +151,7 @@ router.post("/user", async (req, res) => {
 
     const row = await conn.query(query, [user, pass])
 
-    conn.end()
+    await conn.end()
 
     if (row.affectedRows !== 1) {
       return res.status(500).json({ code: "error" })
@@ -174,7 +174,7 @@ router.get("/user/:id", async (req, res) => {
 
     const row = await conn.query(query, [id])
 
-    conn.end()
+    await conn.end()
 
     return res.status(200).json({
       code: "success",
